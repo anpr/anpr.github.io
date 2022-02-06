@@ -1,24 +1,24 @@
 basic_settings:
-  site_title: Personal
+  site_title: Andreas Profous
   favicon_image: /images/favicon.png
 
 header_settings:
-  logo_image: 
+  logo_image: /images/logo_just_ap.png
   logo_width: 200
 
 menu_settings:
   menu_items:
-    - title: 'Projects'
-      url: '/'
+#    - title: 'Projects'
+#      url: '/'
     - title: 'Blog'
-      url: '/blog/'
+      url: '/'
     - title: 'About'
       url: '/about'
     - title: 'Contact'
       url: '/contact'
 
 footer_settings:
-  footer_tagline: A sleek, modern Jekyll theme for personal websites.
+  footer_tagline: Andreas Profous - Software Developer
 
 hero_settings:
   overlay_opacity: 0.8
@@ -27,9 +27,9 @@ post_settings:
   grid_spacing: 10
 
 contact_settings:
-  form_action: ''
+  form_action: 'https://formspree.io/f/mjvlyjed'
   confirmation_url: '/thanks'
-  email_subject: 'Contact form submission'
+  email_subject: 'profous.de contact form submission'
   send_button_text: 'Send Message'
 
 social_settings:

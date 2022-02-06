@@ -1,7 +1,7 @@
-site: Personal Jekyll Theme
+site: Andreas Profous
 
-url: 
-baseurl: 
+url: https://profous.de
+baseurl:
 
 collections:
   pages:
@@ -54,4 +54,3 @@ plugins:
 
 paginate: 6
 paginate_path: "/blog/page:num/"
-  
