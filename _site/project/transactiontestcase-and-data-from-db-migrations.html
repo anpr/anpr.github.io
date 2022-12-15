@@ -143,15 +143,15 @@
 
 			<h2 id="background">Background</h2>
 
-<p>Today, I wanted to increase a pytest test suite, which is running in the gitlab CI on 4 parallel workers.
-I noted earlier that the load of these 4 workers is not evenly distributed. 
-So straight forward idea was to execute the tests in random order. Before this change, tests that were in the same directory were often also executed on the same worker.</p>
+<p>Today, I wanted to increase performance of a pytest test suite, which is running in the gitlab CI on 4 parallel workers.
+I already discovered earlier that the load of these 4 workers is not evenly distributed. 
+Thus, the straight-forward idea was to execute the tests in random order. Prior to this modification, tests that were located in the same directory were frequently run on the same worker.</p>
 
-<p>I was surprised to see a lot of test errors suddenly. Eventually, I fixed all of them.</p>
+<p>The rapid appearance of numerous test faults caught me off guard. I eventually fixed them all, but it took more effort than I thought.</p>
 
 <h2 id="today-i-learned">Today I Learned</h2>
 
-<p>One problem was that the test suite needs data from DB migrations. However, in a few tests people were using the <a href="https://docs.djangoproject.com/en/4.1/topics/testing/tools/#django.test.TransactionTestCase">TransactionTestCase</a>.
+<p>The test suite needs data from DB migrations. However, in a few tests people were using the <a href="https://docs.djangoproject.com/en/4.1/topics/testing/tools/#django.test.TransactionTestCase">TransactionTestCase</a>.
 They were actually used indirectly through the <a href="https://pytest-django.readthedocs.io/en/latest/helpers.html#pytest.mark.django_db">@pytest.mark.django_db</a> mark.</p>
 
 <p>As explained <a href="https://docs.djangoproject.com/en/4.1/topics/testing/overview/#rollback-emulation">in the docs</a>, the <code class="language-plaintext highlighter-rouge">TransactionTestCase</code>, does <strong>not</strong> retain data from data migrations.
