@@ -20,19 +20,19 @@
 
 	<!-- Page Info -->
 	<link rel="shortcut icon" href="/images/favicon.png">
-	<title>Thank you – Andreas Profous</title>
-	<meta name="description" content="A sleek, modern Jekyll theme for personal websites.">
+	<title>Django, Pytest and data used in Migrations – Andreas Profous</title>
+	<meta name="description" content="TransactionTestCase and data from DB migrations.">
 
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="Thank you – Andreas Profous">
-	<meta name="twitter:description" content="A sleek, modern Jekyll theme for personal websites.">
-	<meta name="twitter:image:src" content="http://localhost:4000/images/demo/contact.jpg">
+	<meta name="twitter:title" content="Django, Pytest and data used in Migrations – Andreas Profous">
+	<meta name="twitter:description" content="TransactionTestCase and data from DB migrations.">
+	<meta name="twitter:image:src" content="http://localhost:4000/images/demo/demo-square.jpg">
 
 	<!-- Facebook OpenGraph -->
-	<meta property="og:title" content="Thank you – Andreas Profous" />
-	<meta property="og:description" content="A sleek, modern Jekyll theme for personal websites." />
-	<meta property="og:image" content="http://localhost:4000/images/demo/contact.jpg" />
+	<meta property="og:title" content="Django, Pytest and data used in Migrations – Andreas Profous" />
+	<meta property="og:description" content="TransactionTestCase and data from DB migrations." />
+	<meta property="og:image" content="http://localhost:4000/images/demo/demo-square.jpg" />
 
 	
 	<!-- Font Embed Code -->
@@ -66,7 +66,7 @@
 </head>
 
 
-<body class="loading ajax-loading" data-site-url="http://localhost:4000" data-page-url="/thanks">
+<body class="loading ajax-loading" data-site-url="http://localhost:4000" data-page-url="/project/transactiontestcase-and-data-from-db-migrations">
 
 
 	<header class="header">
@@ -118,18 +118,18 @@
 	
 	<div class="page">
 
-		<div class="page__content" data-page-title="Thank you – Andreas Profous">
+		<div class="page__content" data-page-title="Django, Pytest and data used in Migrations – Andreas Profous">
 
 			<section class="hero hero--single">
 
-	<div class="hero__image" style="background-image: url(/images/demo/contact.jpg)">
+	<div class="hero__image" style="background-image: url(/images/demo/demo-square.jpg)">
 		<div class="hero__overlay"></div>
 	</div>
 
 	<div class="wrap">
 
-		<h1>Thank you</h1>
-		<p>Your message was sent successfully.</p>
+		<h1>Django, Pytest and data used in Migrations</h1>
+		<p></p>
 
 	</div>
 
@@ -141,9 +141,22 @@
 
 		<article class="single-post">
 
-			<p><img src="/images/demo/about.jpg" alt="" /></p>
+			<h2 id="background">Background</h2>
 
-<p>Thank you for contacting me. I will get back to you :-)</p>
+<p>Today, I wanted to increase a pytest test suite, which is running in the gitlab CI on 4 parallel workers.
+I noted earlier that the load of these 4 workers is not evenly distributed. 
+So straight forward idea was to execute the tests in random order. Before this change, tests that were in the same directory were often also executed on the same worker.</p>
+
+<p>I was surprised to see a lot of test errors suddenly. Eventually, I fixed all of them.</p>
+
+<h2 id="today-i-learned">Today I Learned</h2>
+
+<p>One problem was that the test suite needs data from DB migrations. However, in a few tests people were using the <a href="https://docs.djangoproject.com/en/4.1/topics/testing/tools/#django.test.TransactionTestCase">TransactionTestCase</a>.
+They were actually used indirectly through the <a href="https://pytest-django.readthedocs.io/en/latest/helpers.html#pytest.mark.django_db">@pytest.mark.django_db</a> mark.</p>
+
+<p>As explained <a href="https://docs.djangoproject.com/en/4.1/topics/testing/overview/#rollback-emulation">in the docs</a>, the <code class="language-plaintext highlighter-rouge">TransactionTestCase</code>, does <strong>not</strong> retain data from data migrations.
+In our case, just using the <code class="language-plaintext highlighter-rouge">db</code> fixture in the tests (they did not really need transaction support) fixed some test failures.</p>
+
 
 
 		</article>
