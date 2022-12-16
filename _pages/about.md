@@ -21,7 +21,7 @@ Moreover, I have an AWS Solution Architect Associate Certification.
 * I pivoted into web development at kreuzwerker, and worked for a variety of clients, as (backend) developer and tech lead.
 * Since recently, I am a freelance software developer and tech lead. 
  
-I worked with a lot of technology, for example:
+I've used a variety of technologies over the years, including but not limited to:
 * Python, Django, FastAPI, sqlalchemy, Celery
 * vue.js, React
 * Ruby and Ruby on Rails
